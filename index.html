@@ -31,11 +31,13 @@
   }
   a{ color:var(--accent); text-decoration:underline; text-decoration-color:rgba(44,95,130,.35); text-underline-offset:3px }
   a:hover{ text-decoration-color:var(--accent) }
-  .col{ max-width:720px; margin:0 auto; padding:0 22px 100px; position:relative }
+  .col{ max-width:920px; margin:0 auto; padding:0 22px 100px; position:relative }
   .col::before{
     content:""; position:absolute; top:0; bottom:0; left:0; width:1px; background:var(--rule);
   }
-  @media (min-width:760px){ .col{ padding-left:40px } .col::before{ left:18px } }
+  @media (min-width:760px){ .col{ padding-left:44px; padding-right:32px } .col::before{ left:20px } }
+  @media (min-width:1040px){ .col{ max-width:1040px } }
+  .prose{ max-width:66ch }
 
   /* Top bar */
   .topbar{
@@ -43,9 +45,10 @@
     border-bottom:1px solid var(--rule);
   }
   .topbar-inner{
-    max-width:720px; margin:0 auto; padding:12px 22px; display:flex; align-items:baseline; justify-content:space-between; gap:14px; flex-wrap:wrap;
+    max-width:920px; margin:0 auto; padding:12px 22px; display:flex; align-items:baseline; justify-content:space-between; gap:14px; flex-wrap:wrap;
   }
-  @media (min-width:760px){ .topbar-inner{ padding-left:40px } }
+  @media (min-width:760px){ .topbar-inner{ padding-left:44px; padding-right:32px } }
+  @media (min-width:1040px){ .topbar-inner{ max-width:1040px } }
   .topbar .name{ font-family:var(--serif); font-weight:600; font-size:16px; letter-spacing:.2px }
   .topbar nav{ display:flex; gap:16px; flex-wrap:wrap; font-size:14px }
   .topbar nav a{ color:var(--ink-soft); text-decoration:none }
@@ -68,7 +71,7 @@
     font-family:var(--serif); font-weight:700; font-size:clamp(32px,5.2vw,52px); line-height:1.08; margin:0 0 10px;
   }
   .role{ font-family:var(--serif); font-size:19px; color:var(--accent); margin:0 0 6px; font-weight:600 }
-  .meta{ color:var(--ink-soft); font-size:15px; max-width:56ch; margin:0 0 18px }
+  .meta{ color:var(--ink-soft); font-size:15px; max-width:62ch; margin:0 0 18px }
 
   .now{
     display:inline-block; background:var(--card); border:1px solid var(--rule); border-left:3px solid var(--accent-warm);
@@ -90,32 +93,32 @@
   p{ margin:0 0 12px }
 
   /* Timeline (Experience / Education) */
-  .timeline .entry{ display:grid; grid-template-columns:1fr; gap:2px; padding:16px 0; border-top:1px solid var(--rule) }
+  .timeline .entry{ display:grid; grid-template-columns:1fr; gap:2px; padding:18px 0; border-top:1px solid var(--rule) }
   .timeline .entry:last-child{ border-bottom:1px solid var(--rule) }
   @media (min-width:600px){
-    .timeline .entry{ grid-template-columns:130px 1fr; gap:18px }
+    .timeline .entry{ grid-template-columns:150px minmax(0,1fr); gap:24px }
   }
   .entry .when{ font-family:var(--serif); font-style:italic; color:var(--accent); font-size:14.5px; padding-top:2px }
   .entry h3{ margin:0 0 4px; font-size:17px; font-weight:600 }
   .entry .place{ color:var(--ink-soft); font-size:14px; margin-bottom:8px }
-  .entry ul{ margin:8px 0 0 18px; padding:0 }
+  .entry ul{ margin:8px 0 0 18px; padding:0; max-width:64ch }
   .entry li{ margin:5px 0; font-size:15px }
   .entry.current{ background:linear-gradient(90deg, rgba(166,84,31,.06), transparent 60%) }
   .fillin{ color:var(--ink-soft); font-style:italic }
 
   /* Project cards */
-  .cards{ display:grid; grid-template-columns:1fr; gap:14px }
-  @media (min-width:600px){ .cards{ grid-template-columns:1fr 1fr } }
+  .cards{ display:grid; grid-template-columns:1fr; gap:18px }
+  @media (min-width:640px){ .cards{ grid-template-columns:repeat(auto-fit, minmax(300px, 1fr)) } }
   .card{
-    background:var(--card); border:1px solid var(--rule); border-radius:3px; padding:16px 18px;
+    background:var(--card); border:1px solid var(--rule); border-radius:3px; padding:18px 20px;
   }
   .card h3{ margin:0 0 4px; font-size:16.5px; font-weight:600 }
   .card .sub{ font-size:13.5px; margin-bottom:8px }
   .card ul{ margin:8px 0 0 18px; padding:0 }
   .card li{ margin:5px 0; font-size:14.5px }
 
-  .flat-list{ display:grid; grid-template-columns:1fr; gap:12px }
-  @media (min-width:600px){ .flat-list{ grid-template-columns:1fr 1fr } }
+  .flat-list{ display:grid; grid-template-columns:1fr; gap:14px }
+  @media (min-width:600px){ .flat-list{ grid-template-columns:repeat(auto-fit, minmax(260px, 1fr)) } }
   .flat{ border-top:1px solid var(--rule); padding-top:12px }
   .flat h3{ margin:0 0 4px; font-size:15.5px; font-weight:600 }
   .flat .sub{ font-size:13.5px; color:var(--ink-soft) }
@@ -168,8 +171,10 @@
 
     <section id="about">
       <h2>About</h2>
+      <div class="prose">
       <p>I'm moving from industry into research, carrying a background in backend systems and applied machine learning with me. I built features for <strong>MyBiz</strong>, the corporate travel platform at MakeMyTrip, and earlier worked on platform services and API tooling with Kafka and Spring Boot at BNY. Alongside that, I completed an M.Tech in AI &amp; ML at BITS Pilani, which led to the decision to pursue a PhD.</p>
       <p>I like designing reliable services, building data and ML pipelines end to end, and — now — asking slower, deeper questions about the problems I used to just ship fixes for.</p>
+      </div>
     </section>
 
     <section id="experience">
@@ -207,7 +212,7 @@
       <h2>Education</h2>
       <div class="timeline">
         <div class="entry current">
-          <div class="when">2026 — Present</div>
+          <div class="when">Jul 2026 — Present</div>
           <div>
             <h3>Indian Institute of Technology, Bombay — PhD</h3>
             <div class="place fillin">Department of Computer Science and Engineering</div>
@@ -217,14 +222,14 @@
           <div class="when">2024 — 2026</div>
           <div>
             <h3>BITS Pilani — M.Tech, AI &amp; ML (WILP)</h3>
-            <div class="place">CGPA 8.49 (through Semester 2)</div>
+            <div class="place">CGPA 8.41</div>
           </div>
         </div>
         <div class="entry">
           <div class="when">2018 — 2022</div>
           <div>
             <h3>Netaji Subhas Institute of Technology (NSIT) — B.E., IT</h3>
-            <div class="place">CGPA 8.66</div>
+            <div class="place">CGPA 8.67</div>
           </div>
         </div>
       </div>
